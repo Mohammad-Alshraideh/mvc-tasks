@@ -11,10 +11,13 @@ namespace feb_1_task2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Product
     {
+      
         public int ProductID { get; set; }
+        [Required]
         public string ProductName { get; set; }
         public Nullable<int> CategoryID { get; set; }
         public Nullable<int> UnitPrice { get; set; }

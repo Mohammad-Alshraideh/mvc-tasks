@@ -77,3 +77,5 @@ C:\Users\Mohammad Alshraideh\Desktop\Room\feb-1\obj\Debug\feb-1.csproj.CoreCompi
 C:\Users\Mohammad Alshraideh\Desktop\Room\feb-1\obj\Debug\feb-1.csproj.CopyComplete
 C:\Users\Mohammad Alshraideh\Desktop\Room\feb-1\obj\Debug\feb-1.dll
 C:\Users\Mohammad Alshraideh\Desktop\Room\feb-1\obj\Debug\feb-1.pdb
+C:\Users\Mohammad Alshraideh\mvc-tasks\feb-1\task1\obj\Debug\feb-1.dll
+C:\Users\Mohammad Alshraideh\mvc-tasks\feb-1\task1\obj\Debug\feb-1.pdb
