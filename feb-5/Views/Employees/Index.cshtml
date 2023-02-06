@@ -10,32 +10,30 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-@using (Html.BeginForm())
+
+
+@using (Html.BeginForm("Index", "Employees"))
 {
-    <div style="display:flex;" class="form-group">
-        <div>
-            <label for="FirstName">First Name</label>
-            @Html.RadioButton("sear", "FirstName", new { @class = "radio-inline" })
-        </div>
-        <div>
-            <label for="LastName">Last Name</label>
-            @Html.RadioButton("sear", "LastName", new { @class = "radio-inline" })
-        </div>
-        <div>
-            <label for="Email">Email</label>
-            @Html.RadioButton("sear", "Email", new { @class = "radio-inline" })
-        </div>
+    <b> Search By : </b>
+    @Html.RadioButton("sear", "FirstName", true) <text>First Name </text>
+    @Html.RadioButton("sear", "LastName") <text> Last Name </text>
+    @Html.RadioButton("sear", "Email") <text> Email </text>
 
+    <br />
+    <div style="display:flex;">
+        @Html.TextBox("Search", "", new { @class = "form-control" })
 
-        <input type="search" id="Search" name="Search" class="form-control" />
-
-
-        <button type="submit" class="btn btn-primary">
-            <i class="fas fa-search"></i>
-        </button>
+        <Button type="submit" value="Search" class="btn btn-primary">
+            <i class="fa fa-search"></i>
+        </Button>
     </div>
 
+ 
+    <br />
 }
+
+
+
 
 @{
     if (Model == null || Model.Count() == 0)
@@ -112,11 +110,11 @@
                         @Html.DisplayFor(modelItem => m)
                     </td>
                     <td>
-                 
-                        <a download href="../images/@item.Img"> <img width="100" src="../images/@item.Img"></a>  
+
+                        <a download href="../images/@item.Img"> <img width="100" src="~/images/@item.Img"></a>
                     </td>
                     <td>
-             
+
                         <a download href="../Document/@item.CV"> @item.CV</a>
                     </td>
                     <td>

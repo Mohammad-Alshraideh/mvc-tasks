@@ -70,19 +70,27 @@ namespace actionbutton.Controllers
             {
 
 
-                if (file.ContentLength > 0)
+                if (file != null && file.ContentLength > 0)
                 {
                     string _FileName = Path.GetFileName(file.FileName);
                     string _path = Path.Combine(Server.MapPath("~/images"), _FileName);
                     file.SaveAs(_path);
                     employee.Img = _FileName;
                 }
-                if (cv.ContentLength > 0)
+                else
+                {
+                    employee.Img = null;
+                }
+                if (cv != null && cv.ContentLength > 0)
                 {
                     string _FileName = Path.GetFileName(cv.FileName);
                     string _path = Path.Combine(Server.MapPath("~/Document"), _FileName);
                     file.SaveAs(_path);
                     employee.CV = _FileName;
+                }
+                else
+                {
+                    employee.CV = null;
                 }
 
 
@@ -115,24 +123,36 @@ namespace actionbutton.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,First_Name,Last_name,E_mail,Phone,Age,Job_Title,Gender,Img,CV")] Employee employee, HttpPostedFileBase file , HttpPostedFileBase cv)
+        public ActionResult Edit([Bind(Include = "id,First_Name,Last_name,E_mail,Phone,Age,Job_Title,Gender,Img,CV")] Employee employee, HttpPostedFileBase file , HttpPostedFileBase cv , int? id)
         {
+
+            var existingModel = db.Employees.AsNoTracking().FirstOrDefault(x => x.id == id);
             if (ModelState.IsValid)
             {
-                if (file.ContentLength > 0)
+                if (file != null && file.ContentLength > 0)
                 {
                     string _FileName = Path.GetFileName(file.FileName);
                     string _path = Path.Combine(Server.MapPath("~/images"), _FileName);
                     file.SaveAs(_path);
                     employee.Img = _FileName;
                 }
-                if (cv.ContentLength > 0)
+                else
+                {
+                    employee.Img = existingModel.Img;
+                }
+    
+                if (cv != null && cv.ContentLength > 0)
                 {
                     string _FileName = Path.GetFileName(cv.FileName);
                     string _path = Path.Combine(Server.MapPath("~/Document"), _FileName);
                     file.SaveAs(_path);
                     employee.CV = _FileName;
                 }
+                else
+                {
+                    employee.CV = existingModel.CV;
+                }
+             
                 db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
